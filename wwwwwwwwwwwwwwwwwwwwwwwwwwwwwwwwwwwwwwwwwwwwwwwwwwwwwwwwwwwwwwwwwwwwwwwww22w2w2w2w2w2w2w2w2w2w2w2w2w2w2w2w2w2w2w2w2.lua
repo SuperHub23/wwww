@@ -50,14 +50,13 @@ local EspTab = Window:MakeTab({
     PremiumOnly = false
 })
 -- Toggles
-EspTab:AddToggle({
-    Name = "Esp",
-    Default = false,
-    Callback = function(Value)
-        print(Value)
-    end
+Tab:AddButton({
+	Name = "ESP",
+	Callback = function()
+          loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
+      		print("button pressed")
+  	end    
 })
-
 -- Tabs
 local PlayerTab = Window:MakeTab({
     Name = "PlayerTab",
@@ -65,31 +64,24 @@ local PlayerTab = Window:MakeTab({
     PremiumOnly = false
 })
 
-Tab:AddButton({
-	Name = "Button!",
-	Callback = function()
-                loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
-      		print("button pressed")
-  	end    
-})
 
-PlayerTab:AddSlider({
-	Name = "Speed Scale",
-	Min = 0,
-	Max = 150,
-	Default = 5,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "1 out of 150",
-	Callback = function(Value)
+Tab:AddSlider({
+    Name = "Speed",
+    Min = 16,
+    Max = 200,
+    Default = 16,
+    Color = Color3.fromRGB(255,255,255),
+    Increment = 1,
+    ValueName = "speed",
+    Callback = function(Value)
         getgenv().WalkSpeedValue = Value; --Enter your speed amount here
         local Player = game:service'Players'.LocalPlayer;
         Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
             Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
         end)
         Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
-		print(Value)
-	end    
+        print(Value)
+    end
 })
 
 PlayerTab:AddSlider({
