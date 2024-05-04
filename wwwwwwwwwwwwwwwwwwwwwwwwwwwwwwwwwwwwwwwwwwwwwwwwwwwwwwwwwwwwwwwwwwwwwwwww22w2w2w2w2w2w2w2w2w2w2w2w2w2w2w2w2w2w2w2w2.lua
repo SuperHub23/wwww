@@ -11,13 +11,6 @@ local AimbotTab = Window:MakeTab({
 })
 
 
--- Tabs
-local EspTab = Window:MakeTab({
-    Name = "Esp",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
 -- Toggles
 AimbotTab:AddToggle({
     Name = "Aimbot!",
@@ -27,15 +20,6 @@ AimbotTab:AddToggle({
     end
 })
 
-
--- Toggles
-EspTab:AddToggle({
-    Name = "Esp",
-    Default = false,
-    Callback = function(Value)
-        print(Value)
-    end
-})
 
 -- Toggles
 AimbotTab:AddToggle({
@@ -57,6 +41,21 @@ AimbotTab:AddSlider({
 	Callback = function(Value)
 		print(Value)
 	end    
+})
+
+-- Tabs
+local EspTab = Window:MakeTab({
+    Name = "Esp",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+-- Toggles
+EspTab:AddToggle({
+    Name = "Esp",
+    Default = false,
+    Callback = function(Value)
+        print(Value)
+    end
 })
 
 -- Tabs
