@@ -11,6 +11,13 @@ local AimbotTab = Window:MakeTab({
 })
 
 
+-- Tabs
+local EspTab = Window:MakeTab({
+    Name = "Esp",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
 -- Toggles
 AimbotTab:AddToggle({
     Name = "Aimbot!",
@@ -20,6 +27,14 @@ AimbotTab:AddToggle({
     end
 })
 
+
+Tab:AddButton({
+	Name = "ESP",
+	Callback = function()
+          loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
+      		print("button pressed")
+  	end    
+})
 
 -- Toggles
 AimbotTab:AddToggle({
@@ -44,36 +59,30 @@ AimbotTab:AddSlider({
 })
 
 -- Tabs
-local EspTab = Window:MakeTab({
-    Name = "Esp",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
--- Toggles
-Tab:AddButton({
-	Name = "ESP",
-	Callback = function()
-          loadstring(game:HttpGet('https://raw.githubusercontent.com/Lucasfin000/SpaceHub/main/UESP'))()
-      		print("button pressed")
-  	end    
-})
--- Tabs
 local PlayerTab = Window:MakeTab({
     Name = "PlayerTab",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-
-Tab:AddSlider({
-    Name = "Speed",
-    Min = 16,
-    Max = 200,
-    Default = 16,
-    Color = Color3.fromRGB(255,255,255),
-    Increment = 1,
-    ValueName = "speed",
+-- Toggles
+EspTab:AddToggle({
+    Name = "Box Esp",
+    Default = false,
     Callback = function(Value)
+        print(Value)
+    end
+})
+
+PlayerTab:AddSlider({
+	Name = "Speed Scale",
+	Min = 0,
+	Max = 150,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "1 out of 150",
+	Callback = function(Value)
         getgenv().WalkSpeedValue = Value; --Enter your speed amount here
         local Player = game:service'Players'.LocalPlayer;
         Player.Character.Humanoid:GetPropertyChangedSignal'WalkSpeed':Connect(function()
@@ -81,7 +90,8 @@ Tab:AddSlider({
         end)
         Player.Character.Humanoid.WalkSpeed = getgenv().WalkSpeedValue;
         print(Value)
-    end
+		print(Value)
+	end    
 })
 
 PlayerTab:AddSlider({
